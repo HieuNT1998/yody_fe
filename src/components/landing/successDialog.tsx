@@ -12,7 +12,7 @@
       require('@tailwindcss/forms'),
     ],
   }
-  ```
+  ```x
 */
 import { Fragment, useState } from 'react'
 import { Popover, Transition, Dialog } from '@headlessui/react'
@@ -27,8 +27,8 @@ const navigation = [
     { name: 'Company', href: '#' },
 ]
 
-export default function Example() {
-    const [open, setOpen] = useState(false)
+export default function SuccessDialog() {
+    const [open, setOpen] = useState(true)
     return (
         <Transition.Root show={open} as={Fragment}>
             <Dialog as="div" className="fixed z-10 inset-0 overflow-y-auto" onClose={setOpen}>

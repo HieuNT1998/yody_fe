@@ -19,6 +19,7 @@
     "@heroicons/react": "^1.0.6",
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@types/jest": "^27.5.0",
+    "axios": "^0.27.2",
     "extend-expect": "link:@testing-library/jest-dom/extend-expect",
     "next": "^12.1.5",
     "next-seo": "^5.4.0",

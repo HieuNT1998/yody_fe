@@ -19,3 +19,22 @@ a:hover {
 .content ul {
   @apply my-6;
 }
+
+
+#user-form {
+  padding-bottom: 50px;
+}
+
+#country {
+  padding: 5px;
+}
+
+
+#input-text {
+  padding: 5px;
+}
+
+#btn-submit {
+  padding-left: 50px;
+  padding-right: 50px;
+}

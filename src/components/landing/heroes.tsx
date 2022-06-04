@@ -88,7 +88,7 @@ export default function Heroes() {
                 ))}
               </div>
             </div>
-            <div className="hidden md:block text-right">
+            {/* <div className="hidden md:block text-right">
               <span className="inline-flex rounded-md shadow-md ring-1 ring-black ring-opacity-5">
                 <a
                   href="#"
@@ -97,7 +97,7 @@ export default function Heroes() {
                   Log in
                 </a>
               </span>
-            </div>
+            </div> */}
           </nav>
 
           <Transition
@@ -159,18 +159,18 @@ export default function Heroes() {
                   Coming soon
                 </span> */}
                 <span className="mt-1 block text-4xl tracking-tight font-extrabold sm:text-5xl xl:text-6xl">
-                  <span className="block text-gray-600">Nếu chọn một hành vi then chốt tôi sẽ chọn </span>
-                  <span className="block text-indigo-900">ĐÀO TẠO</span>
+                  <span className="text-indigo-900">Nếu chọn một hành vi <span className="text-yellow-500">then chốt</span> tôi sẽ chọn </span>
+                  <span className="text-yellow-400">ĐÀO TẠO</span>
 
                 </span>
               </h1>
-              <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
+              <p className="mt-3 text-base text-gray-800 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
                 - CEO YODY Nguyễn Việt Hòa -
               </p>
               <div className="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0 flex">
                 <button
                   type="submit"
-                  className="mt-3 w-full px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-yellow-500 shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:flex-shrink-0 sm:inline-flex sm:items-center sm:w-auto"
+                  className="mt-3 w-full px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-yellow-500 shadow-sm hover:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:flex-shrink-0 sm:inline-flex sm:items-center sm:w-auto"
                 >
                   Tham gia cùng chúng tôi
                 </button>

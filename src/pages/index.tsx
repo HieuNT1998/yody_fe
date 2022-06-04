@@ -9,18 +9,6 @@ import { Meta } from '@/layouts/Meta';
 import { Main } from '@/templates/Main';
 
 const Index = () => {
-  var user = {
-    vp1: "",
-    vp2: "",
-    kcVP1: "",
-    kcVP2: "",
-    chieuCao: "",
-    canNang: "",
-    thayCa: "",
-  }
-  function _onChangeUserInfor(e: any) {
-    user = e;
-  }
   return (
     <Main
       meta={
@@ -29,7 +17,7 @@ const Index = () => {
     >
       <Heroes />
       <Form />
-      <Uploader />
+      {/* <Uploader /> */}
       <Team />
       <Footer />
     </Main>
