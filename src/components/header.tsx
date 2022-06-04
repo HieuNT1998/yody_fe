@@ -31,10 +31,10 @@ export default function Header() {
               </div>
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex-shrink-0 flex items-center">
-                <img
-                    className="h-8 w-auto"
+                  <img
+                    className="h-16 w-auto"
                     src={`${router.basePath}/icon_horizontal.png`}
-                    alt="Techainer"
+                    alt="Yody"
                   />
                 </div>
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
@@ -43,19 +43,19 @@ export default function Header() {
                     href="/"
                     className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                   >
-                    Home
+                    Trang chủ
                   </a>
-                  <a
+                  {/* <a
                     href="/team"
                     className="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                   >
                     Our Team
-                  </a>
+                  </a> */}
                   <a
                     href="/contact"
                     className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                   >
-                    Contact Us
+                    Liên hệ với chúng tôi
                   </a>
                 </div>
               </div>

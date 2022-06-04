@@ -14,82 +14,58 @@
   }
   ```
 */
-const people = [
-  {
-    name: 'Nguyễn Trọng Hoàng Việt',
-    role: 'Team Leader',
-    imageUrl:
-      'https://storage.techainer.com/photo-restoration/profile/drake.jpeg',
-    twitterUrl: '#',
-    linkedinUrl: '#',
-  },
-  {
-    name: 'Đào Bích Ngọc',
-    role: 'Project Manager',
-    imageUrl:
-      'https://storage.techainer.com/photo-restoration/profile/ernesta.png',
-    twitterUrl: '#',
-    linkedinUrl: '#',
-  },
-  {
-    name: 'Dương Duy Long',
-    role: 'AI Lead',
-    imageUrl:
-      'https://storage.techainer.com/photo-restoration/profile/genos.jpeg',
-    twitterUrl: '#',
-    linkedinUrl: '#',
-  },
-  {
-    name: 'Ngô Phương Nhi',
-    role: 'AI Lead',
-    imageUrl:
-      'https://storage.techainer.com/photo-restoration/profile/marley.jpeg',
-    twitterUrl: '#',
-    linkedinUrl: '#',
-  },
-  {
-    name: 'Nguyễn Xuân Trường',
-    role: 'Software Developer Lead',
-    imageUrl:
-      'https://storage.techainer.com/photo-restoration/profile/kyle.jpeg',
-    twitterUrl: '#',
-    linkedinUrl: '#',
-  },  
-  {
-    name: 'Đinh Huy Sáng',
-    role: 'QA Manager',
-    imageUrl:
-      'https://storage.techainer.com/photo-restoration/profile/leo.jpeg',
-    twitterUrl: '#',
-    linkedinUrl: '#',
-  },
-  {
-    name: 'Phan Thành Trung',
-    role: 'AI Member',
-    imageUrl:
-      'https://storage.techainer.com/photo-restoration/profile/miles.jpeg',
-    twitterUrl: '#',
-    linkedinUrl: '#',
-  },
-  {
-    name: 'Nguyễn Trọng Tuấn',
-    role: 'AI Member',
-    imageUrl:
-      'https://storage.techainer.com/photo-restoration/profile/po.jpeg',
-    twitterUrl: '#',
-    linkedinUrl: '#',
-  },
-  {
-    name: 'Nguyễn Trí Hiếu',
-    role: 'Mobile Developer Lead',
-    imageUrl:
-      'https://storage.techainer.com/photo-restoration/profile/hubert.jpeg',
-    twitterUrl: '#',
-    linkedinUrl: '#',
-  },
-]
-
+import { useRouter } from 'next/router';
 export default function Team() {
+  const router = useRouter();
+  const people = [
+    {
+      name: 'Nguyễn Phương Anh',
+      role: 'UX UI Designer',
+      imageUrl:
+        'https://scontent.fhan12-1.fna.fbcdn.net/v/t39.30808-6/271916497_2015493911957737_7971776272806648597_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=Mam5v90jkb8AX9R0rGX&_nc_ht=scontent.fhan12-1.fna&oh=00_AT81j2KPCr_Cz9ENQV-kqhJSZMh_iHx4bfRqci1uC5HrdA&oe=629F88BB',
+      twitterUrl: '#',
+      linkedinUrl: '#',
+    },
+    {
+      name: 'Hoàng Thị Thanh Nguyên',
+      role: 'Data scientist',
+      imageUrl: `${router.basePath}/nguyengaos.jpg`,
+      twitterUrl: '#',
+      linkedinUrl: '#',
+    },
+    {
+      name: 'Nguyễn Thị Hồng Nhung',
+      role: 'Project Manager',
+      imageUrl:
+        'https://scontent.fhan12-1.fna.fbcdn.net/v/t39.30808-6/239969033_1571760333164178_2779386083961248804_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=174925&_nc_ohc=0Q0S-8HjLCYAX_zH60x&_nc_ht=scontent.fhan12-1.fna&oh=00_AT-mtKq3OoqVx6N16wb8d3fyWAhLxrL5K9n3h3b0eAOYQw&oe=629EC643',
+      twitterUrl: '#',
+      linkedinUrl: '#',
+    },
+    {
+      name: 'Nguyễn Trọng Tuấn',
+      role: 'AI Member',
+      imageUrl:
+        'https://storage.techainer.com/photo-restoration/profile/po.jpeg',
+      twitterUrl: '#',
+      linkedinUrl: '#',
+    },
+    {
+      name: 'Nguyễn Trí Hiếu',
+      role: 'Frontend Developer',
+      imageUrl:
+        'https://storage.techainer.com/photo-restoration/profile/hubert.jpeg',
+      twitterUrl: '#',
+      linkedinUrl: '#',
+    },
+    {
+      name: 'Nguyễn Quốc Cường',
+      role: 'Backend Deverloper',
+      imageUrl:
+        'https://scontent.xx.fbcdn.net/v/t1.15752-9/283255853_1779324865741658_189264319504245158_n.jpg?stp=dst-jpg_p403x403&_nc_cat=101&ccb=1-7&_nc_sid=aee45a&_nc_ohc=1vBWZYHdv2IAX_xjWAq&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVIlLXynP8WeOyEfKYfLtIYP1aLCn7BA1OuFsEBYARRZTA&oe=62C00C0A',
+      twitterUrl: '#',
+      linkedinUrl: '#',
+    },
+  ]
   return (
     <div className="bg-white">
       <div className="mx-auto px-4 max-w-7xl sm:px-6 lg:px-8 pb-16">

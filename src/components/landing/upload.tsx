@@ -18,15 +18,15 @@ import UploadProgressBar from "./UploadProgressBar";
 */
 export default function Uploader() {
   return (
-    <div className="mx-auto py-12 px-4 max-w-7xl sm:px-6 lg:px-8 lg:py-24">
+    <div className="mx-auto px-4 max-w-7xl sm:px-6 lg:px-8">
       <form className="space-y-8 divide-y divide-gray-200">
         <div className="space-y-8 divide-y divide-gray-200">
           <div>
             <div>
-              <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Tải ảnh cần xử lý ở đây</h2>
+              <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Tải CV của bạn ở đây</h2>
 
               <p className="mt-5 text-sm text-gray-500">
-                Bạn upload ảnh của bạn ở dưới nhé.
+                Bạn upload CV của bạn ở dưới nhé.
               </p>
             </div>
 
@@ -61,7 +61,7 @@ export default function Uploader() {
                       </label>
                       <p className="pl-1">or drag and drop</p>
                     </div>
-                    <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                    <p className="text-xs text-gray-500">PNG, JPG, PDF up to 10MB</p>
                   </div>
                 </div>
               </div>
@@ -75,18 +75,18 @@ export default function Uploader() {
               type="button"
               className="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
-              Cancel
+              Hủy
             </button>
             <button
               type="submit"
               className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
-              Xử lý
+              Gửi
             </button>
           </div>
         </div>
       </form>
-      <UploadProgressBar />
+      {/* <UploadProgressBar /> */}
     </div>
   )
 }

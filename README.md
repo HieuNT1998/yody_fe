@@ -1,5 +1,3 @@
-# Techainer Photo Restoration
-
 ### Requirements
 
 - Node.js 14+ and pnpm

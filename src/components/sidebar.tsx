@@ -155,7 +155,7 @@ export default function SideBar() {
               <img
                 className="h-8 w-auto"
                 src={`${router.basePath}/icon_horizontal.png`}
-                alt="Techainer"
+                alt="Yody"
               />
             </div>
             <div className="mt-5 flex grow flex-col">

@@ -93,7 +93,7 @@ const navigation = {
 }
 
 export default function Footer() {
-  const router = useRouter(); 
+  const router = useRouter();
 
   return (
     <footer className="bg-white" aria-labelledby="footer-heading">
@@ -106,10 +106,10 @@ export default function Footer() {
             <img
               className="h-8 w-auto"
               src={`${router.basePath}/icon_horizontal.png`}
-              alt="Techainer"
+              alt="Yody"
             />
             <p className="text-gray-500 text-base">
-              Ở Techainer, chúng tôi mong muốn mang lại giá trị lớn nhất cho cộng đồng bằng công nghệ mới.
+              Ở Yody, chúng tôi mong muốn mang những sản phẩm thời trang Việt Nam vươn ra thế giới.
             </p>
             <div className="flex space-x-6">
               {navigation.social.map((item) => (
