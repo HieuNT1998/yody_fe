@@ -19,10 +19,12 @@ import { Popover, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import BeforeAfterSlider from './BeforeAfterSlider';
 
 const navigation = [
-  { name: 'Techainer', href: '#' },
-  { name: 'Contact Us', href: '#' },
+  { name: 'Home', href: '/' },
+  { name: 'Our Team', href: '/team' },
+  { name: 'Contact Us', href: '/contact' },
 ]
 
 export default function Heroes() {
@@ -55,7 +57,7 @@ export default function Heroes() {
         </svg>
       </div>
 
-      <div className="relative pt-6 pb-16 sm:pb-24 lg:pb-32">
+      <div className="relative pt-6 pb-4 sm:pb-24 lg:pb-8">
         <Popover>
           <nav
             className="relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6"
@@ -63,7 +65,7 @@ export default function Heroes() {
           >
             <div className="flex items-center flex-1">
               <div className="flex items-center justify-between w-full md:w-auto">
-                <a href="#">
+                <a href="/">
                   <span className="sr-only">Techainer</span>
                   <img
                     className="h-8 w-auto"
@@ -204,11 +206,14 @@ export default function Heroes() {
                 <rect y={72} width={640} height={640} className="text-gray-50" fill="currentColor" />
                 <rect x={118} width={404} height={784} fill="url(#4f4f415c-a0e9-44c2-9601-6ded5a34a13e)" />
               </svg>
-              <div className="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
+              <BeforeAfterSlider />
+
+              {/* <div className="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
                 <button
                   type="button"
                   className="relative block w-full bg-white rounded-lg overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
+                  
                   <span className="sr-only">Watch our video to learn more</span>
                   <img
                     className="w-full"
@@ -222,7 +227,7 @@ export default function Heroes() {
                     </svg>
                   </div>
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
         </main>

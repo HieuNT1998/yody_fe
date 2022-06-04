@@ -16,50 +16,74 @@
 */
 const people = [
   {
-    name: 'Lindsay Walton',
-    role: 'Front-end Developer',
+    name: 'Nguyễn Trọng Hoàng Việt',
+    role: 'Team Leader',
     imageUrl:
-      'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80',
+      'https://storage.techainer.com/photo-restoration/profile/drake.jpeg',
     twitterUrl: '#',
     linkedinUrl: '#',
   },
   {
-    name: 'Lindsay Walton',
-    role: 'Front-end Developer',
+    name: 'Đào Bích Ngọc',
+    role: 'Project Manager',
     imageUrl:
-      'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80',
+      'https://storage.techainer.com/photo-restoration/profile/ernesta.png',
     twitterUrl: '#',
     linkedinUrl: '#',
   },
   {
-    name: 'Lindsay Walton',
-    role: 'Front-end Developer',
+    name: 'Dương Duy Long',
+    role: 'AI Lead',
     imageUrl:
-      'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80',
+      'https://storage.techainer.com/photo-restoration/profile/genos.jpeg',
     twitterUrl: '#',
     linkedinUrl: '#',
   },
   {
-    name: 'Lindsay Walton',
-    role: 'Front-end Developer',
+    name: 'Ngô Phương Nhi',
+    role: 'AI Lead',
     imageUrl:
-      'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80',
+      'https://storage.techainer.com/photo-restoration/profile/marley.jpeg',
     twitterUrl: '#',
     linkedinUrl: '#',
   },
   {
-    name: 'Lindsay Walton',
-    role: 'Front-end Developer',
+    name: 'Nguyễn Xuân Trường',
+    role: 'Software Developer Lead',
     imageUrl:
-      'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80',
+      'https://storage.techainer.com/photo-restoration/profile/kyle.jpeg',
     twitterUrl: '#',
     linkedinUrl: '#',
   },  
   {
-    name: 'Lindsay Walton',
-    role: 'Front-end Developer',
+    name: 'Đinh Huy Sáng',
+    role: 'QA Manager',
     imageUrl:
-      'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80',
+      'https://storage.techainer.com/photo-restoration/profile/leo.jpeg',
+    twitterUrl: '#',
+    linkedinUrl: '#',
+  },
+  {
+    name: 'Phan Thành Trung',
+    role: 'AI Member',
+    imageUrl:
+      'https://storage.techainer.com/photo-restoration/profile/miles.jpeg',
+    twitterUrl: '#',
+    linkedinUrl: '#',
+  },
+  {
+    name: 'Nguyễn Trọng Tuấn',
+    role: 'AI Member',
+    imageUrl:
+      'https://storage.techainer.com/photo-restoration/profile/po.jpeg',
+    twitterUrl: '#',
+    linkedinUrl: '#',
+  },
+  {
+    name: 'Nguyễn Trí Hiếu',
+    role: 'Mobile Developer Lead',
+    imageUrl:
+      'https://storage.techainer.com/photo-restoration/profile/hubert.jpeg',
     twitterUrl: '#',
     linkedinUrl: '#',
   },
@@ -68,12 +92,12 @@ const people = [
 export default function Team() {
   return (
     <div className="bg-white">
-      <div className="mx-auto py-12 px-4 max-w-7xl sm:px-6 lg:px-8 lg:py-24">
+      <div className="mx-auto px-4 max-w-7xl sm:px-6 lg:px-8 pb-16">
         <div className="space-y-12">
           <div className="space-y-5 sm:space-y-4 md:max-w-xl lg:max-w-3xl xl:max-w-none">
             <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Team chúng tôi</h2>
             <p className="text-xl text-gray-500">
-              Ở đây toàn trai xinh gái đẹp
+              Những con người này đã cố gắng ngày đêm để tạo sản phẩm phục vụ cộng đồng!
             </p>
           </div>
           <ul

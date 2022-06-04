@@ -1,3 +1,5 @@
+import UploadProgressBar from "./UploadProgressBar";
+
 /*
   This example requires Tailwind CSS v2.0+ 
   
@@ -21,9 +23,9 @@ export default function Uploader() {
         <div className="space-y-8 divide-y divide-gray-200">
           <div>
             <div>
-              <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Upload ở đây</h2>
+              <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Tải ảnh cần xử lý ở đây</h2>
 
-              <p className="mt-1 text-sm text-gray-500">
+              <p className="mt-5 text-sm text-gray-500">
                 Bạn upload ảnh của bạn ở dưới nhé.
               </p>
             </div>
@@ -33,7 +35,7 @@ export default function Uploader() {
                 {/* <label htmlFor="cover-photo" className="block text-sm font-medium text-gray-700">
                   Cover photo
                 </label> */}
-                <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                <div className="mt-1 flex justify-center px-6 pt-16 pb-16 border-2 border-gray-300 border-dashed rounded-md">
                   <div className="space-y-1 text-center">
                     <svg
                       className="mx-auto h-12 w-12 text-gray-400"
@@ -84,6 +86,7 @@ export default function Uploader() {
           </div>
         </div>
       </form>
+      <UploadProgressBar />
     </div>
   )
 }
