@@ -17,9 +17,7 @@
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
-import Link from 'next/link';
 import { useRouter } from 'next/router';
-import BeforeAfterSlider from './BeforeAfterSlider';
 
 const navigation = [
   { name: 'Home', href: '/' },

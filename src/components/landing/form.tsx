@@ -4,12 +4,12 @@ import axios from 'axios';
 import { CheckIcon, ExclamationIcon } from '@heroicons/react/outline'
 
 
-const navigation = [
-    { name: 'Product', href: '#' },
-    { name: 'Features', href: '#' },
-    { name: 'Marketplace', href: '#' },
-    { name: 'Company', href: '#' },
-]
+// const navigation = [
+//     { name: 'Product', href: '#' },
+//     { name: 'Features', href: '#' },
+//     { name: 'Marketplace', href: '#' },
+//     { name: 'Company', href: '#' },
+// ]
 var user = {
     vp1: "1",
     vp2: "1",
@@ -145,7 +145,7 @@ export default function Form() {
                                                                     onChange={select1Change}
 
                                                                 >
-                                                                    {vanPhong && vanPhong.map((item) => {
+                                                                    {isBusy && vanPhong && vanPhong.map((item) => {
                                                                         return (
                                                                             <option key={item} value={item}>{item}</option>
                                                                         )

@@ -15,17 +15,15 @@
   ```
 */
 import { Fragment, useState } from 'react'
-import { Popover, Transition, Dialog } from '@headlessui/react'
-import { MenuIcon, XIcon } from '@heroicons/react/outline'
-import { CheckCircleIcon } from '@heroicons/react/solid'
+import { Transition, Dialog } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/outline'
 
-const navigation = [
-    { name: 'Product', href: '#' },
-    { name: 'Features', href: '#' },
-    { name: 'Marketplace', href: '#' },
-    { name: 'Company', href: '#' },
-]
+// const navigation = [
+//     { name: 'Product', href: '#' },
+//     { name: 'Features', href: '#' },
+//     { name: 'Marketplace', href: '#' },
+//     { name: 'Company', href: '#' },
+// ]
 
 export default function Example() {
     const [open, setOpen] = useState(false)

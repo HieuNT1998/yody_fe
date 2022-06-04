@@ -1,7 +1,7 @@
 /* This example requires Tailwind CSS v2.0+ */
 export default function UploadProgressBar() {
   return (
-    <div className>
+    <div className="">
       <h4 className="sr-only">Status</h4>
       <p className="text-sm font-medium text-gray-900">Hệ thống đang xử lý...</p>
       <div className="mt-6" aria-hidden="true">
