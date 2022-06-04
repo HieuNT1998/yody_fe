@@ -59,7 +59,7 @@ export default function Team() {
     },
     {
       name: 'Nguyễn Quốc Cường',
-      role: 'Backend Deverloper',
+      role: 'Backend Developer',
       imageUrl:
         'https://scontent.xx.fbcdn.net/v/t1.15752-9/283255853_1779324865741658_189264319504245158_n.jpg?stp=dst-jpg_p403x403&_nc_cat=101&ccb=1-7&_nc_sid=aee45a&_nc_ohc=1vBWZYHdv2IAX_xjWAq&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVIlLXynP8WeOyEfKYfLtIYP1aLCn7BA1OuFsEBYARRZTA&oe=62C00C0A',
       twitterUrl: '#',
