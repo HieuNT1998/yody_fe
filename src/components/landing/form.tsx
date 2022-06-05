@@ -120,7 +120,6 @@ export default function Form() {
     useEffect(() => {
         axios.get(apiURL + "/api/services/office/")
             .then(res => {
-                console.log(res)
                 if (!isInit) {
                     for (let i = 0; i < res.data.length; i++) {
                         vanPhong.push(res.data[i].name)
@@ -137,9 +136,7 @@ export default function Form() {
 
     const handleImageChange = function (e: React.ChangeEvent<HTMLInputElement>) {
         const fileList = e.target.files;
-        console.log('fileList :>> ', fileList);
         if (!fileList) return;
-
         setFileSelected(fileList[0]);
     };
     const onSubmit = async () => {
@@ -174,19 +171,14 @@ export default function Form() {
                             'token 4309695a9c83b777fc54d87a7ab54a582f0747ae',
                     },
                 }).then(res => {
+                    console.log(res);
                     setOpenProcess(false)
                     setOpen(true);
                 }).catch(err => {
+                    console.log(err);
                     setOpenProcess(false)
                     setOpenErr(true);
                 })
-                // console.log('req :>> ', req);
-                // setOpenProcess(false)
-                // if (req.status == 200) {
-                //     setOpen(true);
-                // } else {
-                //     setOpenErr(true);
-                // }
             } else {
                 setOpenErr(true);
             }
