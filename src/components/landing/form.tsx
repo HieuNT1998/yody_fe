@@ -11,8 +11,10 @@ import { CheckIcon, ExclamationIcon } from '@heroicons/react/outline'
 //     { name: 'Company', href: '#' },
 // ]
 var user = {
-    vp1: "1",
-    vp2: "1",
+    phongBan: "",
+    viTri: "",
+    vp1: "",
+    vp2: "",
     kcVP1: "",
     kcVP2: "",
     chieuCao: "",
@@ -20,6 +22,11 @@ var user = {
     thayCa: "true",
     dropFile: null,
 }
+
+const selectViTriChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    user.viTri = event.target.value;
+}
+
 const select1Change = (event: React.ChangeEvent<HTMLSelectElement>) => {
     user.vp1 = event.target.value;
 };
@@ -46,11 +53,25 @@ const select7Change = (event: React.ChangeEvent<HTMLSelectElement>) => {
     user.thayCa = event.target.value;
 };
 
+let isInit: boolean = false;
+let isInitDepartment: boolean = false;
+
 
 const apiURL = "http://192.168.9.84:8000"
 
 var vanPhong: string[];
 vanPhong = [];
+
+
+var phongBanList: string[];
+phongBanList = [];
+
+
+var viTriITList: string[];
+viTriITList = [];
+
+var viTriKDList: string[];
+viTriKDList = [];
 
 
 export default function Form() {
@@ -60,15 +81,57 @@ export default function Form() {
     const [openProcess, setOpenProcess] = useState(false)
     const [dropFile, setFileSelected] = useState<File>()
     const [isBusy, setBusy] = useState(false)
+    const [isPositionDone, setPosition] = useState(false)
+    const [isIT, setIT] = useState(true)
+    const selectPositionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        user.phongBan = event.target.value;
+        if (user.phongBan === "IT") {
+            setIT(true)
+        }
+        else {
+            setIT(false)
+        }
+    }
+
+    useEffect(() => {
+        axios.get(apiURL + "/api/services/position/")
+            .then(res => {
+                if (!isInitDepartment) {
+                    console.log(res)
+                    for (let i = 0; i < res.data.length; i++) {
+                        phongBanList.push(res.data[i].department_name);
+                        if (res.data[i].department_name === "Phòng IT") {
+                            viTriITList.push(res.data[i].name);
+                        }
+                        else {
+                            viTriKDList.push(res.data[i].name);
+                        }
+                    }
+                    if (res.data.length > 0) {
+                        user.viTri = res.data[0].name;
+                        user.phongBan = res.data[0].department_name;
+                    }
+                    setPosition(true)
+                    isInitDepartment = true;
+                }
+            })
+    }, [])
+
     useEffect(() => {
         axios.get(apiURL + "/api/services/office/")
             .then(res => {
-                for (let i = 0; i < res.data.length; i++) {
-                    vanPhong.push(res.data[i].name)
+                console.log(res)
+                if (!isInit) {
+                    for (let i = 0; i < res.data.length; i++) {
+                        vanPhong.push(res.data[i].name)
+                    }
+                    if (res.data.length > 0) {
+                        user.vp1 = res.data[0].name
+                        user.vp2 = res.data[0].name
+                    }
+                    setBusy(true)
+                    isInit = true;
                 }
-                user.vp1 = res.data[0].name
-                user.vp2 = res.data[0].name
-                setBusy(true)
             })
     }, [])
 
@@ -81,31 +144,49 @@ export default function Form() {
     };
     const onSubmit = async () => {
         try {
-            setOpenProcess(true)
             if (dropFile) {
+                setOpenProcess(true)
                 const url = apiURL + '/api/candidate/submit/'
                 let form_data = new FormData()
-                form_data.append('first_office', user.vp1)
-                form_data.append('second_office', user.vp2)
-                form_data.append('time_to_first_office', user.kcVP1)
-                form_data.append('time_to_second_office', user.kcVP2)
-                form_data.append('height', user.chieuCao)
-                form_data.append('weight', user.canNang)
-                form_data.append('ready_ot', user.thayCa)
+                form_data.append('position', user.viTri)
+                if (user.viTri === 'IT') {
+                    form_data.append('first_office', "")
+                    form_data.append('second_office', "")
+                    form_data.append('time_to_first_office', "0")
+                    form_data.append('time_to_second_office', "0")
+                    form_data.append('height', "0")
+                    form_data.append('weight', "0")
+                    form_data.append('ready_ot', "")
+                }
+                else {
+                    form_data.append('first_office', user.vp1)
+                    form_data.append('second_office', user.vp2)
+                    form_data.append('time_to_first_office', user.kcVP1)
+                    form_data.append('time_to_second_office', user.kcVP2)
+                    form_data.append('height', user.chieuCao)
+                    form_data.append('weight', user.canNang)
+                    form_data.append('ready_ot', user.thayCa)
+                }
                 form_data.append('file', dropFile)
-                const req = await axios.post(url, form_data, {
+                axios.post(url, form_data, {
                     headers: {
                         Authorization:
                             'token 4309695a9c83b777fc54d87a7ab54a582f0747ae',
                     },
-                })
-                console.log('req :>> ', req);
-                setOpenProcess(false)
-                if (req.status == 200) {
+                }).then(res => {
+                    setOpenProcess(false)
                     setOpen(true);
-                } else {
+                }).catch(err => {
+                    setOpenProcess(false)
                     setOpenErr(true);
-                }
+                })
+                // console.log('req :>> ', req);
+                // setOpenProcess(false)
+                // if (req.status == 200) {
+                //     setOpen(true);
+                // } else {
+                //     setOpenErr(true);
+                // }
             } else {
                 setOpenErr(true);
             }
@@ -134,7 +215,7 @@ export default function Form() {
                                                     <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                                                         <div className="sm:col-span-8">
                                                             <label htmlFor="first-name" className="block text-sm font-medium ">
-                                                                Chọn văn phòng bạn ứng tuyển (Ưu tiên số 1)
+                                                                Chọn phòng ban mà bạn muốn ứng tuyển
                                                             </label>
                                                             <div className="mt-1">
                                                                 <select
@@ -142,20 +223,85 @@ export default function Form() {
                                                                     name="country"
                                                                     autoComplete="country-name"
                                                                     className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                                                                    onChange={select1Change}
-
+                                                                    onChange={selectPositionChange}
                                                                 >
-                                                                    {isBusy && vanPhong && vanPhong.map((item) => {
-                                                                        return (
-                                                                            <option key={item} value={item}>{item}</option>
-                                                                        )
-                                                                    })}
-                                                                    {/* <option value="1" >Văn phòng YODY Hải Dương</option>
-                                                                    <option value="2" >Văn phòng YODY Hà Nội</option> */}
+                                                                    <option key="Phòng IT<" value="IT">Phòng IT</option>
+                                                                    <option key="Phòng kinh doanh" value="Kinh Doanh">Phòng kinh doanh</option>
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                        <div className="sm:col-span-8">
+                                                        {isIT ?
+                                                            <div className="sm:col-span-8">
+                                                                <label htmlFor="first-name" className="block text-sm font-medium ">
+                                                                    Chọn vị trí mà bạn muốn ứng tuyển
+                                                                </label>
+                                                                <div className="mt-1">
+                                                                    <select
+                                                                        id="country"
+                                                                        name="country"
+                                                                        autoComplete="country-name"
+                                                                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                                                                        onChange={selectViTriChange}
+                                                                    >
+                                                                        {isPositionDone && viTriITList && viTriITList.map((item) => {
+                                                                            return (
+                                                                                <option key={item} value={item}>{item}</option>
+                                                                            )
+                                                                        })}
+
+                                                                        {/* <option key="Java Backend" value="Java Backend">Java Backend</option>
+                                                                        <option key="ReactJS" value="ReactJS">ReactJS</option> */}
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            :
+                                                            <div className="sm:col-span-8">
+                                                                <label htmlFor="first-name" className="block text-sm font-medium ">
+                                                                    Chọn vị trí mà bạn muốn ứng tuyển
+                                                                </label>
+                                                                <div className="mt-1">
+                                                                    <select
+                                                                        id="country"
+                                                                        name="country"
+                                                                        autoComplete="country-name"
+                                                                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                                                                        onChange={selectViTriChange}
+                                                                    >
+                                                                        {isPositionDone && viTriKDList && viTriKDList.map((item) => {
+                                                                            return (
+                                                                                <option key={item} value={item}>{item}</option>
+                                                                            )
+                                                                        })}
+                                                                        {/* <option key="Nhân viên Bán Hàng" value="Nhân viên Bán Hàng">Nhân viên Bán Hàng</option> */}
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                        {
+                                                            !isIT ? <div className="sm:col-span-8">
+                                                                <label htmlFor="first-name" className="block text-sm font-medium ">
+                                                                    Chọn văn phòng bạn ứng tuyển (Ưu tiên số 1)
+                                                                </label>
+                                                                <div className="mt-1">
+                                                                    <select
+                                                                        id="country"
+                                                                        name="country"
+                                                                        autoComplete="country-name"
+                                                                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                                                                        onChange={select1Change}
+
+                                                                    >
+                                                                        {isBusy && vanPhong && vanPhong.map((item) => {
+                                                                            return (
+                                                                                <option key={item} value={item}>{item}</option>
+                                                                            )
+                                                                        })}
+                                                                    </select>
+                                                                </div>
+                                                            </div> : <></>
+                                                        }
+
+                                                        {!isIT ? <div className="sm:col-span-8">
                                                             <label htmlFor="first-name" className="block text-sm font-medium ">
                                                                 Chọn văn phòng bạn ứng tuyển (Ưu tiên số 2)
                                                             </label>
@@ -167,8 +313,6 @@ export default function Form() {
                                                                     className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
                                                                     onChange={select2Change}
                                                                 >
-                                                                    {/* <option value="1" >Văn phòng YODY Hải Dương</option>
-                                                                    <option value="2" >Văn phòng YODY Hà Nội</option> */}
                                                                     {vanPhong && vanPhong.map((item) => {
                                                                         return (
                                                                             <option key={item} value={item}>{item}</option>
@@ -176,8 +320,9 @@ export default function Form() {
                                                                     })}
                                                                 </select>
                                                             </div>
-                                                        </div>
-                                                        <div className="sm:col-span-3">
+                                                        </div> : <></>
+                                                        }
+                                                        {!isIT ? <div className="sm:col-span-3">
                                                             <label htmlFor="email" className="block text-sm font-medium ">
                                                                 Thời gian di chuyển đến văn phòng ưu tiên số 1
                                                             </label>
@@ -194,72 +339,85 @@ export default function Form() {
                                                                 />
                                                             </div>
                                                         </div>
-                                                        <div className="sm:col-span-5">
-                                                            <label htmlFor="email" className="block text-sm font-medium ">
-                                                                Thời gian di chuyển đến văn phòng ưu tiên số 2
-                                                            </label>
-                                                            <div className="mt-1">
-                                                                <input
-                                                                    id="input-text"
-                                                                    name="email"
-                                                                    type="email"
-                                                                    autoComplete="email"
-                                                                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                                                                    onChange={select4Change}
-                                                                    placeholder="Bao nhiêu thời gian (phút)"
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                        <div className="sm:col-span-3">
-                                                            <label htmlFor="email" className="block text-sm font-medium ">
-                                                                Chiều cao
-                                                            </label>
-                                                            <div className="mt-1">
-                                                                <input
-                                                                    id="input-text"
-                                                                    name="email"
-                                                                    type="email"
-                                                                    autoComplete="email"
-                                                                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                                                                    onChange={select5Change}
-                                                                    placeholder="Chiêu cao (cm)"
+                                                            : <></>}
+                                                        {
+                                                            !isIT ? <div className="sm:col-span-5">
+                                                                <label htmlFor="email" className="block text-sm font-medium ">
+                                                                    Thời gian di chuyển đến văn phòng ưu tiên số 2
+                                                                </label>
+                                                                <div className="mt-1">
+                                                                    <input
+                                                                        id="input-text"
+                                                                        name="email"
+                                                                        type="email"
+                                                                        autoComplete="email"
+                                                                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                                                                        onChange={select4Change}
+                                                                        placeholder="Bao nhiêu thời gian (phút)"
+                                                                    />
+                                                                </div>
+                                                            </div> : <></>
+                                                        }
 
-                                                                />
+                                                        {
+                                                            !isIT ? <div className="sm:col-span-3">
+                                                                <label htmlFor="email" className="block text-sm font-medium ">
+                                                                    Chiều cao
+                                                                </label>
+                                                                <div className="mt-1">
+                                                                    <input
+                                                                        id="input-text"
+                                                                        name="email"
+                                                                        type="email"
+                                                                        autoComplete="email"
+                                                                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                                                                        onChange={select5Change}
+                                                                        placeholder="Chiêu cao (cm)"
+
+                                                                    />
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div className="sm:col-span-5">
-                                                            <label htmlFor="email" className="block text-sm font-medium ">
-                                                                Cân nặng
-                                                            </label>
-                                                            <div className="mt-1">
-                                                                <input
-                                                                    id="input-text"
-                                                                    name="email"
-                                                                    type="email"
-                                                                    autoComplete="email"
-                                                                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                                                                    onChange={select6Change}
-                                                                    placeholder="Cân nặng (kg)"
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                        <div className="sm:col-span-8">
-                                                            <label htmlFor="first-name" className="block text-sm font-medium ">
-                                                                Sẵn sàng làm việc thay ca
-                                                            </label>
-                                                            <div className="mt-1">
-                                                                <select
-                                                                    id="country"
-                                                                    name="country"
-                                                                    autoComplete="country-name"
-                                                                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                                                                    onChange={select7Change}
-                                                                >
-                                                                    <option value="true" >Sẵn sàng</option>
-                                                                    <option value="false">Không sẵn sàng</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
+                                                                : <></>
+                                                        }
+                                                        {
+                                                            !isIT ?
+                                                                <div className="sm:col-span-5">
+                                                                    <label htmlFor="email" className="block text-sm font-medium ">
+                                                                        Cân nặng
+                                                                    </label>
+                                                                    <div className="mt-1">
+                                                                        <input
+                                                                            id="input-text"
+                                                                            name="email"
+                                                                            type="email"
+                                                                            autoComplete="email"
+                                                                            className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                                                                            onChange={select6Change}
+                                                                            placeholder="Cân nặng (kg)"
+                                                                        />
+                                                                    </div>
+                                                                </div> : <></>
+                                                        }
+                                                        {
+                                                            !isIT ?
+                                                                <div className="sm:col-span-8">
+                                                                    <label htmlFor="first-name" className="block text-sm font-medium ">
+                                                                        Sẵn sàng làm việc thay ca
+                                                                    </label>
+                                                                    <div className="mt-1">
+                                                                        <select
+                                                                            id="country"
+                                                                            name="country"
+                                                                            autoComplete="country-name"
+                                                                            className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                                                                            onChange={select7Change}
+                                                                        >
+                                                                            <option value="true" >Sẵn sàng</option>
+                                                                            <option value="false">Không sẵn sàng</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div> : <></>
+                                                        }
                                                     </div>
                                                 </div>
                                             </div>
@@ -493,6 +651,6 @@ export default function Form() {
                     </div>
                 </Dialog>
             </Transition.Root>
-        </div>
+        </div >
     )
 }
